@@ -1,0 +1,50 @@
+BB8: Infinite Roller 
+
+Create an infinite running game with BB8 as the running character. 
+
+- Animate BB8 as 2 separate objects: head and roller
+- Create objects and gaps in the platform for BB8 to jump over
+- Create a particle effect that shows BB8's movement 
+- Collect a score based on distance covered
+- Create a Parallax background showing landscape as well as time of day 
+- Style the page around the game giving instructions etc 
+- Bonus: Create objects for BB8 to duck under
+
+
+Schedule: 
+
+Monday morning: 
+
+- Rebuilding version of the infinite runner from class/online tutorials using shapes not characters including backgrounds/obstacles etc 
+
+
+Monday afternoon 
+
+- Create the rolling effect of the ball element
+- Create the score tally with locally stored top scores 
+
+
+Tuesday morning
+
+- Create the platforms (rock and sand)
+- Create the particle effects for movement
+
+Tuesday afternoon 
+
+- Finish the particle effect
+- Look into duck functionality 
+
+
+Wednesday morning
+
+- Implement duck functionality 
+- Animate head/antenna 
+
+Wednesday afternoon 
+
+- Research platform effects (sand slowing etc)
+- Research 
+
+Thursday morning 
+
+- style page around the game 
