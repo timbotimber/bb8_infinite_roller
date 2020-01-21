@@ -5,6 +5,7 @@ class Obstacle {
     this.y = random(0, height - this.r);
     this.width = this.r;
     this.height = this.r;
+    this.item = loadImage("./images/collect.png");
   }
 
   move() {
@@ -14,7 +15,7 @@ class Obstacle {
   draw() {}
 
   show() {
-    rect(this.x, this.y, this.r, this.r);
+    image(this.item, this.x, this.y, 50, 50);
     fill(255);
   }
 
