@@ -15,6 +15,7 @@ class Obstacle {
 
   show() {
     rect(this.x, this.y, this.r, this.r);
+    fill(255);
   }
 
   collides(bb8) {

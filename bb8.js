@@ -7,6 +7,8 @@ class bb8 {
     this.gravity = 1.5;
     this.headY = height - this.side;
     this.body = loadImage("./images/body.png");
+    this.head = loadImage("./images/head.png");
+    this.flying = false;
 
     this.width = this.side;
   }
@@ -15,6 +17,7 @@ class bb8 {
     if (this.y == height - this.side) {
       this.velocityY = -25;
       this.headY = 250;
+      this.flying = true;
     }
   }
 
@@ -35,30 +38,34 @@ class bb8 {
 
     if (this.y >= height - this.side) {
       this.y = height - this.side;
+      this.flying = false;
     }
   }
 
   show() {
     this.height = this.side + (this.y - this.headY);
 
+    // push();
+    // fill("red");
+    // rect(this.x, this.headY, this.width, this.height);
+    // pop();
+
     push();
-    fill("red");
-    rect(this.x, this.headY, this.width, this.height);
+    translate(
+      this.x + (random(1) < 0.9) + (1 / 2) * this.width,
+      this.y + (random(1) < 0.9) + (1 / 2) * this.side
+    );
+    rotate((PI / 20) * frameCount);
+    imageMode(CENTER);
+    image(this.body, 0, 0);
 
     pop();
 
-    rect(
-      this.x + (random(1) < 0.9),
-      this.y + (random(1) < 0.9),
-      this.side,
-      this.side
-    );
+    image(
+      this.head,
 
-    rect(
       this.x + (random(1) < 0.9),
-      this.headY + (random(1) < 0.9),
-      this.side / 2,
-      this.side / 2
+      this.headY + (random(1) < 0.9)
     );
   }
 }

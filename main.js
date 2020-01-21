@@ -1,9 +1,14 @@
 let obstacles = [];
+let background;
+let particles = [];
 
 function setup() {
   createCanvas(windowWidth, 450);
   bb8 = new bb8();
   obstacle = new Obstacle();
+  background = new Background();
+  let p = new Particle();
+  particles.push(p);
 }
 
 function keyPressed() {
@@ -11,10 +16,6 @@ function keyPressed() {
     bb8.jump();
     console.log("jumptest");
   }
-  //   if (keyCode === 40) {
-  //     bb8.duck();
-  //     console.log("ducktest");
-  //   }
 }
 
 function windowResized() {
@@ -23,7 +24,14 @@ function windowResized() {
 
 function draw() {
   clear();
-  background(220);
+  background.draw();
+  bb8.show();
+  bb8.move();
+  if (!bb8.flying) {
+    let p = new Particle();
+    particles.push(p);
+  }
+  particleCreate();
   if (random(1) < 0.008) {
     obstacles.push(new Obstacle());
   }
@@ -34,6 +42,14 @@ function draw() {
       console.log("COLLISION");
     }
   }
-  bb8.show();
-  bb8.move();
+}
+
+function particleCreate() {
+  for (let i = 0; i < particles.length; i++) {
+    particles[i].update();
+    particles[i].show();
+    if (particles[i].finished()) {
+      particles.splice(i, 1);
+    }
+  }
 }
