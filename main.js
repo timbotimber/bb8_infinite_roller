@@ -24,7 +24,7 @@ function windowResized() {
 function draw() {
   clear();
   background(220);
-  if (random(1) < 0.015) {
+  if (random(1) < 0.008) {
     obstacles.push(new Obstacle());
   }
   for (let o of obstacles) {

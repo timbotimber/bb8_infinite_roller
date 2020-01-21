@@ -3,9 +3,10 @@ class bb8 {
     this.side = 100;
     this.x = 100;
     this.y = height - 50;
-    this.velocityY = 0.5;
-    this.gravity = 1.8;
+    this.velocityY = 0.7;
+    this.gravity = 1.5;
     this.headY = height - this.side;
+    this.body = loadImage("./images/body.png");
 
     this.width = this.side;
   }
