@@ -1,12 +1,15 @@
 let obstacles = [];
 let background;
 let particles = [];
+let score = [];
+let lazers = [];
 
 function setup() {
   createCanvas(windowWidth, 450);
   bb8 = new bb8();
   obstacle = new Obstacle();
   background = new Background();
+  lazer = new Lazer();
   let p = new Particle();
   particles.push(p);
 }
@@ -40,6 +43,17 @@ function draw() {
     o.show();
     if (o.collides(bb8)) {
       console.log("COLLISION");
+      score.push(o);
+    }
+  }
+  if (random(1) < 0.008) {
+    lazers.push(new Lazer());
+  }
+  for (let l of lazers) {
+    l.move();
+    l.show();
+    if (l.collides(bb8)) {
+      console.log("Lazer");
     }
   }
 }

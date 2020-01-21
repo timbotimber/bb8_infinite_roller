@@ -1,20 +1,21 @@
-class Obstacle {
+class Lazer {
   constructor() {
-    this.r = 45;
+    this.r = 20;
     this.x = width;
-    this.y = random(0, height - this.r);
+    this.y = random(300, height - 10 - this.r);
     this.width = this.r;
     this.height = this.r;
+    this.lazer = loadImage("./images/green_lazer.png");
   }
 
   move() {
-    this.x -= 10;
+    this.x -= 20;
   }
 
   draw() {}
 
   show() {
-    rect(this.x, this.y, this.r, this.r);
+    image(this.lazer, this.x, this.y);
     fill(255);
   }
 
