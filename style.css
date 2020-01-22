@@ -1,0 +1,13 @@
+h1 {
+  font-family: "Orbitron", sans-serif;
+  color: beige;
+}
+
+h2 {
+  font-family: "Orbitron", sans-serif;
+  color: beige;
+}
+
+.background {
+  background-image: url("../images/bg.jpg");
+}

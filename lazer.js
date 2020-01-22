@@ -6,10 +6,11 @@ class Lazer {
     this.width = this.r;
     this.height = this.r;
     this.lazer = loadImage("./images/green_lazer.png");
+    this.speed = 20;
   }
 
   move() {
-    this.x -= 20;
+    this.x -= this.speed * levelSpeed;
   }
 
   draw() {}

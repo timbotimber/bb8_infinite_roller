@@ -2,7 +2,14 @@ let obstacles = [];
 let background;
 let particles = [];
 let score = [];
+let scoreCounter = 50;
+let hiScoreCounter = 50;
 let lazers = [];
+let gameStart = true;
+let gameOver = false;
+let screen = 0;
+let timePoints = 0;
+let levelSpeed = 1;
 
 function setup() {
   createCanvas(windowWidth, 450);
@@ -26,15 +33,21 @@ function windowResized() {
 }
 
 function draw() {
+  document.querySelector("#score").innerText = scoreCounter;
+  document.querySelector("#hiscore").innerText = hiScoreCounter;
   clear();
+  if (scoreCounter <= 0) {
+    gameOver = true;
+  }
   background.draw();
   bb8.show();
   bb8.move();
-  if (!bb8.flying) {
+  if (!bb8.flying && scoreCounter >= 0) {
     let p = new Particle();
     particles.push(p);
   }
   particleCreate();
+
   if (random(1) < 0.008) {
     obstacles.push(new Obstacle());
   }
@@ -42,27 +55,29 @@ function draw() {
     o.move();
     o.show();
     if (o.collides(bb8)) {
-      for (let i = 0; i < 10; i++) {
-        console.log("collect");
-        score.push(o);
-        document.querySelector("#score").innerText = score.length;
-      }
+      scoreCounter += 10;
+      document.querySelector("#score").innerText = scoreCounter;
+      // }
     }
   }
-  if (random(1) < 0.008) {
+
+  if (gameStart === true && random(1) < 0.01 * levelSpeed) {
     lazers.push(new Lazer());
   }
   for (let l of lazers) {
     l.move();
     l.show();
     if (l.collides(bb8)) {
-      for (let i = 0; i < 5; i++) {
-        console.log("Lazer");
-        score.shift(l);
-        document.querySelector("#score").innerText = score.length;
-      }
+      scoreCounter -= 20;
+      document.querySelector("#score").innerText = scoreCounter;
+      rect(0, 0, windowWidth, 450);
     }
   }
+
+  hiScoreTally();
+
+  speedUp();
+
   obstacles = obstacles.filter(
     function(obstacle) {
       if (!obstacle.collides(bb8) && obstacle.x + obstacle.width >= 0) {
@@ -80,6 +95,19 @@ function draw() {
   );
 }
 
+function speedUp() {
+  if (frameCount % 240 === 0) {
+    timePoints += 1;
+    levelSpeed += 0.05;
+  }
+}
+
+function hiScoreTally() {
+  if (hiScoreCounter < scoreCounter) {
+    hiScoreCounter = scoreCounter;
+  }
+}
+
 function particleCreate() {
   for (let i = 0; i < particles.length; i++) {
     particles[i].update();
@@ -89,5 +117,3 @@ function particleCreate() {
     }
   }
 }
-
-// adding points to the HTML

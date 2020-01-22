@@ -27,16 +27,22 @@ class bb8 {
       this.headY = this.headY + (height - this.side - this.headY) * 0.1;
     } else {
       // key is released (or in air)
+      if (scoreCounter <= 0) {
+        this.velocityY = 3;
+      }
       this.y += this.velocityY;
       this.headY += this.velocityY - 0.1;
       this.velocityY += this.gravity;
 
-      if (this.headY + 0.5 * this.side >= height - this.side) {
+      if (
+        this.headY + 0.5 * this.side >= height - this.side &&
+        scoreCounter >= 0
+      ) {
         this.headY = height - this.side * 1.5;
       }
     }
 
-    if (this.y >= height - this.side) {
+    if (this.y >= height - this.side && scoreCounter >= 0) {
       this.y = height - this.side;
       this.flying = false;
     }
@@ -55,7 +61,7 @@ class bb8 {
       this.x + (random(1) < 0.9) + (1 / 2) * this.width,
       this.y + (random(1) < 0.9) + (1 / 2) * this.side
     );
-    rotate((PI / 20) * frameCount);
+    rotate((PI / 20) * (frameCount * levelSpeed));
     imageMode(CENTER);
     image(this.body, 0, 0);
 
@@ -63,7 +69,6 @@ class bb8 {
 
     image(
       this.head,
-
       this.x + (random(1) < 0.9),
       this.headY + (random(1) < 0.9)
     );

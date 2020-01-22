@@ -43,7 +43,7 @@ class Background {
     image(img.src, img.x, 0, width, 450);
     image(img.src, img.x + width, 0, width, 450);
 
-    img.x -= img.speed;
+    img.x -= img.speed * levelSpeed;
     if (img.x <= -width) {
       img.x = 0;
     }

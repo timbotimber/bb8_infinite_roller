@@ -6,10 +6,11 @@ class Obstacle {
     this.width = this.r;
     this.height = this.r;
     this.item = loadImage("./images/collect.png");
+    this.speed = 10;
   }
 
   move() {
-    this.x -= 10;
+    this.x -= this.speed * levelSpeed;
   }
 
   draw() {}
