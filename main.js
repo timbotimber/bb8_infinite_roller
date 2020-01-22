@@ -45,6 +45,7 @@ function draw() {
       for (let i = 0; i < 10; i++) {
         console.log("collect");
         score.push(o);
+        document.querySelector("#score").innerText = score.length;
       }
     }
   }
@@ -55,8 +56,11 @@ function draw() {
     l.move();
     l.show();
     if (l.collides(bb8)) {
-      console.log("Lazer");
-      score.shift(l);
+      for (let i = 0; i < 5; i++) {
+        console.log("Lazer");
+        score.shift(l);
+        document.querySelector("#score").innerText = score.length;
+      }
     }
   }
   obstacles = obstacles.filter(
@@ -85,3 +89,5 @@ function particleCreate() {
     }
   }
 }
+
+// adding points to the HTML
