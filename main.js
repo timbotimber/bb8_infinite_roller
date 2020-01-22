@@ -42,8 +42,10 @@ function draw() {
     o.move();
     o.show();
     if (o.collides(bb8)) {
-      console.log("COLLISION");
-      score.push(o);
+      for (let i = 0; i < 10; i++) {
+        console.log("collect");
+        score.push(o);
+      }
     }
   }
   if (random(1) < 0.008) {
@@ -54,8 +56,24 @@ function draw() {
     l.show();
     if (l.collides(bb8)) {
       console.log("Lazer");
+      score.shift(l);
     }
   }
+  obstacles = obstacles.filter(
+    function(obstacle) {
+      if (!obstacle.collides(bb8) && obstacle.x + obstacle.width >= 0) {
+        return true;
+      }
+    }.bind(this)
+  );
+
+  lazers = lazers.filter(
+    function(lazer) {
+      if (!lazer.collides(bb8) && lazer.x + lazer.width >= 0) {
+        return true;
+      }
+    }.bind(this)
+  );
 }
 
 function particleCreate() {
