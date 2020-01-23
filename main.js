@@ -11,6 +11,10 @@ let screen = 0;
 let timePoints = 0;
 let levelSpeed = 1;
 
+// localStorage.setItem("hiscore", 50)
+// let hiScoreCounter = localStorage.getItem("hiscore")
+// if (hiScoreCounter > )
+
 function setup() {
   createCanvas(windowWidth, 450);
   bb8 = new bb8();
