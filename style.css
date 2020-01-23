@@ -12,30 +12,44 @@ h2 {
   background-image: url("images/bg.jpg");
 }
 
-.game-over {
-  display: none;
-  position: fixed;
-  width: 400;
-  margin-left: 50%;
-  margin-top: 10%;
-  background: black;
+.header {
+  display: flex;
+  justify-content: space-between;
 }
 
-.game-over img {
-  width: 200px;
+.title {
+  display: flex;
+  justify-content: left;
+}
+
+.game-over {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  height: 550px;
+  float: right;
+  width: 50%;
+  margin-left: 25%;
+  text-align: center;
+  margin-right: 0px;
 }
 
 .game-start {
-  display: block;
-  position: fixed;
-  width: 400;
-  height: 450;
-  margin-left: 10%;
-  margin-top: 10%;
-  background: black;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  height: 450px;
+  float: right;
+  width: 50%;
+  margin-left: 50%;
+  text-align: right;
+  margin-right: 0px;
 }
 
-.game-start img {
-  width: 500px;
-  margin-left: 60px;
+.start-text {
+  padding-right: 20px;
+}
+
+.over-message {
+  padding-top: 10px;
 }

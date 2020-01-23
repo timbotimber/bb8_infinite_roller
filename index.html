@@ -15,21 +15,32 @@
     <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
   </head>
   <body class = "background">
-    <div class = "scorebox" >
-      <h1>Score: <span id="score"></score></h1>
-      <h2>Your High Score: <span id="hiscore"></span></h2>
-    </div>
 
+
+    <div class = "header">
+      <div class = "scorebox" >
+        <h1>Score: <span id="score"></score></h1>
+        <h2>Your High Score: <span class="hiscore"></span></h2>
+      </div>
+      <div class = "title">
+        <img src="images/title.png" alt="nameofthegame">
+    </div>
+  </div>
 
     <div class = "game-start"> 
-      <h2>Welcome  the game</h2>
-      <h2>Press return the start</h2>
       <img src="images/gamestart.png" alt="gameoverbb8">
+      <div class = "start-text">
+        <h2>Collect chips and avoid lasers!</h2>
+        <h2>Use space to jump and down to duck</h2>
+        <h2>Press return to start</h2>
+      </div>
     </div>
+    
     <div class = "game-over"> 
-      <h2>Game Over! </h2>
-      <img src="images/gameover.png" alt="gameoverbb8">
-      <h2>Your High Score: <span id="hiscore"></span></h2>
+      <img src="images/thegameover.png" alt="gameoverbb8">
+      <h1 class = "over-message">Game Over!<br>
+      Your High Score: <span class="hiscorefinal"></span><br>
+    press return to roll again</h1>
     </div>
     <script src="main.js"> </script>
   </body>

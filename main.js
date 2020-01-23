@@ -21,29 +21,17 @@ function setup() {
   particles.push(p);
 }
 
-function keyPressed() {
-  if (keyCode === 13) {
-    console.log("go");
-  }
-}
-
-function keyPressed() {
-  if (keyCode === 32) {
-    bb8.jump();
-    console.log("jumptest");
-  }
-}
-
 function windowResized() {
   resizeCanvas(windowWidth, 450);
 }
 
 function draw() {
   document.querySelector("#score").innerText = scoreCounter;
-  document.querySelector("#hiscore").innerText = hiScoreCounter;
+  document.querySelector(".hiscore").innerText = hiScoreCounter;
   clear();
   if (scoreCounter <= 0) {
-    gameOver = true;
+    // gameOver = true;
+    document.querySelector(".hiscorefinal").innerText = hiScoreCounter;
     document.querySelector(".game-over").style.display = "block";
   }
   background.draw();
@@ -77,6 +65,7 @@ function draw() {
     if (l.collides(bb8)) {
       scoreCounter -= 20;
       document.querySelector("#score").innerText = scoreCounter;
+
       rect(0, 0, windowWidth, 450);
     }
   }
@@ -121,5 +110,21 @@ function particleCreate() {
     if (particles[i].finished()) {
       particles.splice(i, 1);
     }
+  }
+}
+function keyPressed() {
+  if (keyCode === 32) {
+    bb8.jump();
+    console.log("jumptest");
+  }
+  if (keyCode === 13) {
+    gameStart = true;
+    document.querySelector(".game-start").style.display = "none";
+    console.log("go");
+  }
+  console.log(scoreCounter);
+  if (keyCode === 13 && scoreCounter <= 0) {
+    document.location.reload();
+    console.log("test");
   }
 }
