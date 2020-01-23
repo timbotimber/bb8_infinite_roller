@@ -9,5 +9,33 @@ h2 {
 }
 
 .background {
-  background-image: url("/images/bg.jpg");
+  background-image: url("images/bg.jpg");
+}
+
+.game-over {
+  display: none;
+  position: fixed;
+  width: 400;
+  margin-left: 50%;
+  margin-top: 10%;
+  background: black;
+}
+
+.game-over img {
+  width: 200px;
+}
+
+.game-start {
+  display: block;
+  position: fixed;
+  width: 400;
+  height: 450;
+  margin-left: 10%;
+  margin-top: 10%;
+  background: black;
+}
+
+.game-start img {
+  width: 500px;
+  margin-left: 60px;
 }

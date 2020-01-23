@@ -30,6 +30,3 @@ class Lazer {
     return true;
   }
 }
-
-// function time increase if (frameCount % 60 === 0) {
-//   this.x += 5;

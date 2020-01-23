@@ -5,7 +5,7 @@ let score = [];
 let scoreCounter = 50;
 let hiScoreCounter = 50;
 let lazers = [];
-let gameStart = true;
+let gameStart = false;
 let gameOver = false;
 let screen = 0;
 let timePoints = 0;
@@ -19,6 +19,12 @@ function setup() {
   lazer = new Lazer();
   let p = new Particle();
   particles.push(p);
+}
+
+function keyPressed() {
+  if (keyCode === 13) {
+    console.log("go");
+  }
 }
 
 function keyPressed() {
@@ -38,6 +44,7 @@ function draw() {
   clear();
   if (scoreCounter <= 0) {
     gameOver = true;
+    document.querySelector(".game-over").style.display = "block";
   }
   background.draw();
   bb8.show();
@@ -48,7 +55,7 @@ function draw() {
   }
   particleCreate();
 
-  if (random(1) < 0.008) {
+  if (gameStart === true && random(1) < 0.008) {
     obstacles.push(new Obstacle());
   }
   for (let o of obstacles) {
@@ -75,7 +82,6 @@ function draw() {
   }
 
   hiScoreTally();
-
   speedUp();
 
   obstacles = obstacles.filter(
