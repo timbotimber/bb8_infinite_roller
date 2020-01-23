@@ -2,7 +2,7 @@ let obstacles = [];
 let background;
 let particles = [];
 let score = [];
-let scoreCounter = 10;
+let scoreCounter = 50;
 let hiScoreCounter = 50;
 let lazers = [];
 let gameStart = false;
@@ -15,7 +15,8 @@ let jump;
 let duck;
 let lazerhit;
 let coin;
-let gameoverSound;
+let gameOverSound;
+let songState = true;
 
 // localStorage.setItem("hiscore", 50)
 // let hiScoreCounter = localStorage.getItem("hiscore")
@@ -27,7 +28,7 @@ function preload() {
   duck = loadSound("sounds/duck.mp3");
   lazerhit = loadSound("sounds/lazer.mp3");
   coin = loadSound("sounds/coin.mp3");
-  gameoverSound = loadSound("sounds/gameover.mp3");
+  gameOverSound = loadSound("sounds/gameover.mp3");
 }
 
 function setup() {
@@ -53,6 +54,10 @@ function draw() {
     document.querySelector(".hiscorefinal").innerText = hiScoreCounter;
     document.querySelector(".game-over").style.display = "block";
     song.pause();
+    if (songState) {
+      gameOverSound.play();
+      songState = false;
+    }
   }
   background.draw();
   bb8.show();
@@ -124,15 +129,6 @@ function hiScoreTally() {
     hiScoreCounter = scoreCounter;
   }
 }
-
-function gameoverSoundPlay() {
-  if (scoreCounter <= 0) {
-    console.log("gameover");
-    gameoverSound.play();
-  }
-}
-
-gameoverSoundPlay();
 
 function particleCreate() {
   for (let i = 0; i < particles.length; i++) {
