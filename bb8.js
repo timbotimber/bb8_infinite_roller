@@ -24,6 +24,7 @@ class bb8 {
   move() {
     if (keyIsDown(40) && this.headY + this.height === height) {
       // down arrow key and bb8 on the ground
+
       this.headY = this.headY + (height - this.side - this.headY) * 0.1;
     } else {
       // key is released (or in air)

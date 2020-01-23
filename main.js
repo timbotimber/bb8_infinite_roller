@@ -2,7 +2,7 @@ let obstacles = [];
 let background;
 let particles = [];
 let score = [];
-let scoreCounter = 50;
+let scoreCounter = 10;
 let hiScoreCounter = 50;
 let lazers = [];
 let gameStart = false;
@@ -10,10 +10,25 @@ let gameOver = false;
 let screen = 0;
 let timePoints = 0;
 let levelSpeed = 1;
+let song;
+let jump;
+let duck;
+let lazerhit;
+let coin;
+let gameoverSound;
 
 // localStorage.setItem("hiscore", 50)
 // let hiScoreCounter = localStorage.getItem("hiscore")
 // if (hiScoreCounter > )
+
+function preload() {
+  song = loadSound("sounds/bg_music.mp3");
+  jump = loadSound("sounds/jump.mp3");
+  duck = loadSound("sounds/duck.mp3");
+  lazerhit = loadSound("sounds/lazer.mp3");
+  coin = loadSound("sounds/coin.mp3");
+  gameoverSound = loadSound("sounds/gameover.mp3");
+}
 
 function setup() {
   createCanvas(windowWidth, 450);
@@ -37,6 +52,7 @@ function draw() {
     // gameOver = true;
     document.querySelector(".hiscorefinal").innerText = hiScoreCounter;
     document.querySelector(".game-over").style.display = "block";
+    song.pause();
   }
   background.draw();
   bb8.show();
@@ -54,6 +70,7 @@ function draw() {
     o.move();
     o.show();
     if (o.collides(bb8)) {
+      coin.play();
       scoreCounter += 10;
       document.querySelector("#score").innerText = scoreCounter;
       // }
@@ -67,6 +84,7 @@ function draw() {
     l.move();
     l.show();
     if (l.collides(bb8)) {
+      lazerhit.play();
       scoreCounter -= 20;
       document.querySelector("#score").innerText = scoreCounter;
 
@@ -107,6 +125,15 @@ function hiScoreTally() {
   }
 }
 
+function gameoverSoundPlay() {
+  if (scoreCounter <= 0) {
+    console.log("gameover");
+    gameoverSound.play();
+  }
+}
+
+gameoverSoundPlay();
+
 function particleCreate() {
   for (let i = 0; i < particles.length; i++) {
     particles[i].update();
@@ -118,17 +145,18 @@ function particleCreate() {
 }
 function keyPressed() {
   if (keyCode === 32) {
+    jump.play();
     bb8.jump();
-    console.log("jumptest");
+  }
+  if (keyCode === 40) {
+    duck.play();
   }
   if (keyCode === 13) {
     gameStart = true;
     document.querySelector(".game-start").style.display = "none";
-    console.log("go");
+    song.play();
   }
-  console.log(scoreCounter);
   if (keyCode === 13 && scoreCounter <= 0) {
     document.location.reload();
-    console.log("test");
   }
 }
